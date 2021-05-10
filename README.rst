@@ -62,6 +62,8 @@ Simply add hCaptchaField to your forms::
         hcaptcha = hCaptchaField()
         ....
 
+In your template, if you need to, you can then use `{{ form.hcaptcha }}` to access the field. 
+
 You can override default config by passing additional arguments::
 
     class Forms(forms.Form):
@@ -69,3 +71,36 @@ You can override default config by passing additional arguments::
         hcaptcha = hCaptchaField(theme='dark', size='compact')
         ....
 
+
+How it Works
+------------------
+
+When a form is submitted by a user, hCaptcha's JavaScript will send two POST parameters to your backend, `g-captcha-resposne` and `h-captcha-response`. These will be received by your app and will be used to complete the `hcaptcha` form field in your backend code.
+
+When your app receives these two values, the following will happen:
+ 
+ - Your backend will send these values to the hCaptcha servers
+ - Their servers will indicate whether the values in the fields are correct
+ - If so, your `hcaptcha` form field will validate correctly
+ 
+Unit Tests
+--------------
+You will need to disable the hCaptcha field in your unit tests, since your tests obviously cannot complete the hCaptcha successfully. One way to do so might be something like:
+
+```
+from unittest.mock import MagicMock, patch
+
+from django.test import TestCase
+
+@patch("hcaptcha.fields.hCaptchaField.validate", return_value=True)
+class ContactTest(TestCase):
+    test_msg = {
+        "name": "pandora",
+        "message": "xyz",
+        "hcaptcha": "xxx",  # Any truthy value is fine
+    }
+
+    def test_something(self, mock: MagicMock) -> None:
+        response = self.client.post("/contact/", self.test_msg)
+        self.assertEqual(response.status_code, HTTP_302_FOUND)
+```
