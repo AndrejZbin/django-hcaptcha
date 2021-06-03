@@ -6,8 +6,8 @@ from urllib.request import build_opener, Request, ProxyHandler
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from hcaptcha.settings import DEFAULT_CONFIG, PROXIES, SECRET, TIMEOUT, VERIFY_URL
-from hcaptcha.widgets import hCaptchaWidget
+from hcaptcha_field.settings import DEFAULT_CONFIG, PROXIES, SECRET, TIMEOUT, VERIFY_URL
+from hcaptcha_field.widgets import hCaptchaWidget
 
 
 class hCaptchaField(forms.Field):

@@ -2,7 +2,7 @@ from urllib.parse import urlencode
 
 from django import forms
 
-from hcaptcha.settings import JS_API_URL, SITEKEY
+from hcaptcha_field.settings import JS_API_URL, SITEKEY
 
 
 class hCaptchaWidget(forms.Widget):
