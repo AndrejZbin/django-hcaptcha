@@ -1,7 +1,12 @@
 # Django hCaptcha Field
 
-Django hCaptcha Field provides a simple way to protect your django forms using
+[![Python unit tests](https://github.com/tiesjan/django-hcaptcha-field/actions/workflows/run_python_unit_tests.yml/badge.svg)](https://github.com/tiesjan/django-hcaptcha-field/actions/workflows/run_python_unit_tests.yml)
+[![Linters](https://github.com/tiesjan/django-hcaptcha-field/actions/workflows/run_linters.yml/badge.svg)](https://github.com/tiesjan/django-hcaptcha-field/actions/workflows/run_linters.yml)
+
+Django hCaptcha Field provides a simple way to protect your Django forms using
 [hCaptcha](https://www.hcaptcha.com/).
+
+_This is a fork of [`django-hcaptcha`](https://github.com/AndrejZbin/django-hcaptcha)_.
 
 ## Installation
 1. Install using pip:
@@ -41,7 +46,7 @@ You can also configure your hCaptcha widget globally
       'render': 'explicit',
       'theme': 'dark',  # do not use data- prefix
       'size': 'compact',  # do not use data- prefix
-      ...
+      # ...
   }
   ```
 
@@ -70,19 +75,21 @@ Change default verification timeout:
 Simply add hCaptchaField to your forms:
 
   ```python
-  from hcaptcha_field.fields import hCaptchaField
+  from hcaptcha_field import hCaptchaField
 
   class Form(forms.Form):
-      ....
       hcaptcha = hCaptchaField()
-      ....
   ```
 
-You can override default config by passing additional arguments:
+You can override the sitekey and other default configuration by passing
+additional arguments:
 
   ```python
+  from hcaptcha_field import hCaptchaField
+
   class Form(forms.Form):
-      ....
-      hcaptcha = hCaptchaField(theme='dark', size='compact')
-      ....
+      hcaptcha = hCaptchaField(sitekey='...', theme='dark', size='compact')
   ```
+
+## License
+The scripts and documentation in this project are released under the BSD-3-Clause License.
