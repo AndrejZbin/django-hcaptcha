@@ -3,7 +3,15 @@ name: Linters
 
 on:
   pull_request:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
   push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
 
 jobs:
   Flake8:
