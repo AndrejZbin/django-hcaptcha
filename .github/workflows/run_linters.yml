@@ -1,0 +1,22 @@
+---
+name: Linters
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  Flake8:
+    environment: linting_environment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check-out repository
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install `tox`
+        run: python3 -m pip install tox
+      - name: Run linter
+        run: python3 -m tox -e flake8
