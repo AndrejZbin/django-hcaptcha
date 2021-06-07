@@ -1,4 +1,7 @@
+graft hcaptcha_field
+graft py_tests
 include LICENSE
-include README.rst
-recursive-include hcaptcha_field/templates *
-recursive-include docs *
+include README.md
+
+global-exclude __pycache__
+global-exclude *.py[co]

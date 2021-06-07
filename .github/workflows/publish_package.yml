@@ -1,0 +1,30 @@
+---
+name: Publish PyPI package
+
+on:
+  push:
+    branches-ignore:
+      - '**'
+    tags:
+      - '**'
+
+jobs:
+  PyPI:
+    environment: pypi_publishing_environment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check-out repository
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install dependencies
+        run: python3 -m pip install build twine
+      - name: Build package
+        run: python3 -m build --sdist --wheel ./
+      - name: Publish package
+        run: python3 -m twine upload dist/*
+        env:
+          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
