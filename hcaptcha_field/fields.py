@@ -106,6 +106,7 @@ class hCaptchaField(forms.Field):
         post_data = urlencode({
             'secret': hcaptcha_settings.SECRET,
             'response': value,
+            'sitekey': self.sitekey,
         }).encode('utf-8')
         request = Request(hcaptcha_settings.VERIFY_URL, post_data)
 
