@@ -1,4 +1,5 @@
 import json
+import logging
 from urllib.error import HTTPError
 from urllib.parse import urlencode
 from urllib.request import build_opener, Request, ProxyHandler
@@ -9,6 +10,9 @@ from django.utils.translation import gettext_lazy as _
 
 from hcaptcha_field.settings import hcaptcha_settings
 from hcaptcha_field.widgets import hCaptchaWidget
+
+
+LOGGER = logging.getLogger('hcaptcha_field')
 
 
 DATA_ATTRIBUTE_CONFIG = frozenset([
@@ -114,6 +118,7 @@ class hCaptchaField(forms.Field):
         try:
             response = opener.open(request, timeout=hcaptcha_settings.TIMEOUT)
         except HTTPError:
+            LOGGER.exception("Failed to verify response with hCaptcha API.")
             raise ValidationError(
                 self.error_messages['error_hcaptcha'],
                 code='error_hcaptcha'
@@ -122,6 +127,7 @@ class hCaptchaField(forms.Field):
         # Check response
         response_data = json.loads(response.read().decode('utf-8'))
         if not response_data.get('success'):
+            LOGGER.error("Failed to pass hCaptcha check: %s", response_data)
             raise ValidationError(
                 self.error_messages['invalid_hcaptcha'],
                 code='invalid_hcaptcha'
