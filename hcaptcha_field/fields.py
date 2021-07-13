@@ -39,9 +39,19 @@ QUERY_PARAMETER_CONFIG = frozenset([
 class hCaptchaField(forms.Field):
     widget = hCaptchaWidget
     default_error_messages = {
-        'error_hcaptcha': _('hCaptcha could not be verified.'),
-        'invalid_hcaptcha': _('hCaptcha could not be verified.'),
-        'required': _('Please prove you are a human.'),
+        'error_hcaptcha': _(
+            # Translators: Error shown when an internal server error occurred.
+            'Something went wrong while verifying the hCaptcha. '
+            'Please try again.'
+        ),
+        'invalid_hcaptcha': _(
+            # Translators: Error shown when visitor did not pass the hCaptcha check.
+            'hCaptcha could not be verified.'
+        ),
+        'required': _(
+            # Translators: Error shown when visitor forgot to fill in the hCaptcha.
+            'Please prove you are human.'
+        ),
     }
 
     def __init__(self, sitekey=None, **kwargs):

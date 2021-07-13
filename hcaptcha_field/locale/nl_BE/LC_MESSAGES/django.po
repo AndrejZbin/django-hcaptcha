@@ -1,0 +1,31 @@
+# Django hCaptcha Field
+# Copyright (C) 2021 Ties Jan Hefting
+# This file is distributed under the same license as the Django hCaptcha Field package.
+# Ties Jan Hefting <hello@tiesjan.com>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Django hCaptcha Field\n"
+"Language: nl_BE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Translators: Error shown when an internal server error occurred.
+#: fields.py:44
+msgid "Something went wrong while verifying the hCaptcha. Please try again."
+msgstr ""
+"Er ging iets mis tijdens het verifiëren van de hCaptcha. Probeer het nog "
+"eens."
+
+#. Translators: Error shown when visitor did not pass the hCaptcha check.
+#: fields.py:49
+msgid "hCaptcha could not be verified."
+msgstr "hCaptcha kon niet worden geverifieerd."
+
+#. Translators: Error shown when visitor forgot to fill in the hCaptcha.
+#: fields.py:53
+msgid "Please prove you are human."
+msgstr "Bewijs dat u een mens bent."
