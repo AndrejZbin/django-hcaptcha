@@ -4,18 +4,17 @@ name: Linters
 on:
   pull_request:
     branches:
-      - '**'
+      - "**"
     tags-ignore:
-      - '**'
+      - "**"
   push:
     branches:
-      - '**'
+      - "**"
     tags-ignore:
-      - '**'
+      - "**"
 
 jobs:
   Flake8:
-    environment: linting_environment
     runs-on: ubuntu-latest
     steps:
       - name: Check-out repository
@@ -23,7 +22,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: "3.9"
       - name: Install `tox`
         run: python3 -m pip install tox
       - name: Run linter

@@ -4,16 +4,16 @@ name: Python unit tests
 on:
   pull_request:
     branches:
-      - '**'
+      - "**"
     tags-ignore:
-      - '**'
+      - "**"
   push:
     branches:
-      - '**'
+      - "**"
     tags-ignore:
-      - '**'
+      - "**"
   schedule:
-    - cron: '0 18 * * 5'  # Run every Friday at 18:00 UTC
+    - cron: "0 18 * * 5"  # Run every Friday at 18:00 UTC
 
 jobs:
   Test:
@@ -21,18 +21,18 @@ jobs:
     strategy:
       matrix:
         python:
-          - '3.9'
-          - '3.8'
-          - '3.7'
-          - '3.6'
+          - "3.9"
+          - "3.8"
+          - "3.7"
+          - "3.6"
         django:
-          - 'django32'
-          - 'django31'
-          - 'django30'
-          - 'django22'
+          - "django32"
+          - "django31"
+          - "django30"
+          - "django22"
         include:
-          - python: '3.5'
-            django: 'django22'
+          - python: "3.5"
+            django: "django22"
     steps:
       - name: Check-out repository
         uses: actions/checkout@v2
