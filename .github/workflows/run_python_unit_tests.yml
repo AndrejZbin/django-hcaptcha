@@ -12,8 +12,6 @@ on:
       - "**"
     tags-ignore:
       - "**"
-  schedule:
-    - cron: "0 18 * * 5"  # Run every Friday at 18:00 UTC
 
 jobs:
   Test:
