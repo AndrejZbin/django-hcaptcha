@@ -7,7 +7,7 @@ Django hCaptcha provides a simple way to protect your django forms using `hCaptc
 Configuration
 -------------
 
-Add "django-hcaptcha" to your INSTALLED_APPS setting like this::
+Add "hcaptcha" to your INSTALLED_APPS setting like this::
 
     INSTALLED_APPS = [
         ...
@@ -87,20 +87,20 @@ Unit Tests
 --------------
 You will need to disable the hCaptcha field in your unit tests, since your tests obviously cannot complete the hCaptcha successfully. One way to do so might be something like:
 
-```
-from unittest.mock import MagicMock, patch
+.. code-block:: python
 
-from django.test import TestCase
+    from unittest.mock import MagicMock, patch
 
-@patch("hcaptcha.fields.hCaptchaField.validate", return_value=True)
-class ContactTest(TestCase):
-    test_msg = {
-        "name": "pandora",
-        "message": "xyz",
-        "hcaptcha": "xxx",  # Any truthy value is fine
-    }
+    from django.test import TestCase
 
-    def test_something(self, mock: MagicMock) -> None:
-        response = self.client.post("/contact/", self.test_msg)
-        self.assertEqual(response.status_code, HTTP_302_FOUND)
-```
+    @patch("hcaptcha.fields.hCaptchaField.validate", return_value=True)
+    class ContactTest(TestCase):
+        test_msg = {
+            "name": "pandora",
+            "message": "xyz",
+            "hcaptcha": "xxx",  # Any truthy value is fine
+        }
+
+        def test_something(self, mock: MagicMock) -> None:
+            response = self.client.post("/contact/", self.test_msg)
+            self.assertEqual(response.status_code, HTTP_302_FOUND)

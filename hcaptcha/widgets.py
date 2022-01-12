@@ -6,7 +6,7 @@ from hcaptcha.settings import JS_API_URL, SITEKEY
 
 
 class hCaptchaWidget(forms.Widget):
-    template_name = 'hcaptcha_widget.html'
+    template_name = 'hcaptcha/forms/widgets/hcaptcha_widget.html'
 
     def __init__(self, *args, **kwargs):
         self.extra_url = {}
