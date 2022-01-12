@@ -1,3 +1,4 @@
+import inspect
 import json
 from urllib.error import HTTPError
 from urllib.parse import urlencode
@@ -18,16 +19,23 @@ class hCaptchaField(forms.Field):
         'required': _('Please prove you are a human.'),
     }
 
-    def __init__(self, required=True, **config):
+    def __init__(self, **kwargs):
+        superclass_parameters = inspect.signature(super().__init__).parameters
+        superclass_kwargs = {}
         widget_settings = DEFAULT_CONFIG.copy()
-        widget_settings.update(config)
+        for key, value in kwargs.items():
+            if key in superclass_parameters:
+                superclass_kwargs[key] = value
+            else:
+                widget_settings[key] = value
+
         widget_url_settings = {}
         for prop in filter(lambda p: p in widget_settings, ('onload', 'render', 'hl')):
             widget_url_settings[prop] = widget_settings[prop]
             del widget_settings[prop]
         self.widget_settings = widget_settings
 
-        super().__init__(label='', help_text='', required=required)
+        super().__init__(**superclass_kwargs)
 
         self.widget.extra_url = widget_url_settings
 
