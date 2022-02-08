@@ -1,7 +1,7 @@
 # Django hCaptcha Field
-# Copyright (C) 2021 Ties Jan Hefting
+# Copyright (C) 2021-present Ties Jan Hefting
 # This file is distributed under the same license as the Django hCaptcha Field package.
-# Ties Jan Hefting <hello@tiesjan.com>, 2021.
+# Ties Jan Hefting <hello@tiesjan.com>, 2021-present.
 #
 #, fuzzy
 msgid ""
