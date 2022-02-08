@@ -8,7 +8,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
 setuptools.setup(
     # Metadata
     name='django-hcaptcha-field',
-    version='1.2.0',
+    version='1.2.1',
     license='BSD',
     author='Ties Jan Hefting',
     author_email='hello@tiesjan.com',
