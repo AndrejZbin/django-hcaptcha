@@ -16,7 +16,9 @@ msgstr ""
 #. Translators: Error shown when an internal server error occurred.
 #: fields.py:44
 msgid "Something went wrong while verifying the hCaptcha. Please try again."
-msgstr "Bei der Verifizierung des hCaptcha ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+msgstr ""
+"Bei der Verifizierung des hCaptcha ist ein Fehler aufgetreten. Bitte "
+"versuchen Sie es erneut."
 
 #. Translators: Error shown when visitor did not pass the hCaptcha check.
 #: fields.py:49
@@ -25,5 +27,5 @@ msgstr "hCaptcha konnte nicht verifiziert werden."
 
 #. Translators: Error shown when visitor forgot to fill in the hCaptcha.
 #: fields.py:53
-msgid "Please prove you are a human."
+msgid "Please prove you are human."
 msgstr "Bitte beweisen Sie das Sie ein Mensch sind."
