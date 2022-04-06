@@ -45,6 +45,6 @@ setuptools.setup(
     zip_safe=False,
     python_requires='>=3.5',
     install_requires=(
-        'Django>=2.2,<=4.0',
+        'Django>=2.2',
     )
 )
