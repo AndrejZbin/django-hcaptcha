@@ -20,6 +20,11 @@ jobs:
       matrix:
         include:
           # Django 4.0
+          - {tox_env: "py3-django41", python: "3.10"}
+          - {tox_env: "py3-django41", python: "3.9"}
+          - {tox_env: "py3-django41", python: "3.8"}
+
+          # Django 4.0
           - {tox_env: "py3-django40", python: "3.10"}
           - {tox_env: "py3-django40", python: "3.9"}
           - {tox_env: "py3-django40", python: "3.8"}
