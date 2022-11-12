@@ -1,8 +1,9 @@
 import json
 import logging
+import ssl
 from urllib.error import HTTPError
 from urllib.parse import urlencode
-from urllib.request import build_opener, Request, ProxyHandler
+from urllib.request import build_opener, Request, ProxyHandler, HTTPSHandler
 
 from django import forms
 from django.core.exceptions import ValidationError
@@ -108,6 +109,17 @@ class hCaptchaField(forms.Field):
             attrs['data-%s' % key] = value
         return attrs
 
+
+    def _get_ssl_context(self):
+        tls = None
+        if hasattr(ssl, 'PROTOCOL_TLSv1'):
+            tls = ssl.PROTOCOL_TLSv1
+        if hasattr(ssl, 'PROTOCOL_TLS'):
+            tls = ssl.PROTOCOL_TLS
+        if hasattr(ssl, 'PROTOCOL_TLSv1_2'):
+            tls = ssl.PROTOCOL_TLSv1_2
+        return ssl.SSLContext(tls)
+
     def validate(self, value):
         """
         Validates the field by verifying the value of the hidden field
@@ -116,7 +128,8 @@ class hCaptchaField(forms.Field):
         super().validate(value)
 
         # Build request
-        opener = build_opener(ProxyHandler(hcaptcha_settings.PROXIES))
+        opener = build_opener(HTTPSHandler(context=self._get_ssl_context()),
+                              ProxyHandler(hcaptcha_settings.PROXIES))
         post_data = urlencode({
             'secret': hcaptcha_settings.SECRET,
             'response': value,
